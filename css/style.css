@@ -1,0 +1,73 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #EAEAEA;
+}
+
+.box-border{
+  -webkit-box-shadow: 5px 2px 25px -4px rgba(0,0,0,0.42); 
+  box-shadow: 5px 2px 25px -4px rgba(0,0,0,0.42);
+}
+
+.box-perfil{
+  background-color: #FFF;
+}
+
+.perfil{
+  background: #EAEAEA url('../img/Eu.jpg') no-repeat center/100%;
+  opacity: 0.9;
+  background-size: cover;
+  background-position: top;
+  height: 20em;
+}
+
+.nome{
+  background-color: #eaeaea;
+}
+
+.box-contact div svg, .box-skills div svg, .box-languagens div svg, .box-work svg{
+  color: #1F4690;
+}
+
+.box-contact div a{
+  color: black;
+}
+
+.box-skills div span, .box-languagens div span{
+  font-size: larger;
+  text-transform: uppercase;
+}
+
+/* àrea princial */
+.box-work{
+  background-color: #FFF;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.year{
+  color: #1F4690;
+  font-size: 1.2rem;
+}
+
+.current{
+  background-color: #1F4690;
+  color: white;
+  border-radius: 10%;
+  padding-bottom: 3px;
+}
+
+.footer{
+  background-color: #1F4690;
+  color: #FFF;
+}
+
+.footer a{
+  text-decoration: none;
+}
