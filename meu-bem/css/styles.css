@@ -46,6 +46,24 @@ main {
   font-style: normal;
 }
 
+.heart {
+  display: inline-block;
+  animation: pulse 1s infinite;
+  transform-origin: center;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
