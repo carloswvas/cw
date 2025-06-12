@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CW♥JL</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap");
+
+      :root {
+        --primary-color: #a86e70;
+        --secondary-color: #3f3d56;
+        --background-color: #f8f8f8;
+        --card-background: #ffffff;
+        --correct-color: #28a745;
+        --incorrect-color: #dc3545;
+        --heading-font: "Playfair Display", serif;
+        --body-font: "Poppins", sans-serif;
+      }
+
+      body {
+        font-family: var(--body-font);
+        background-color: var(--background-color);
+        color: var(--secondary-color);
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      main {
+        width: 100%;
+      }
+
+      /* --- ESTILOS DO HERO E GALERIA --- */
+      #hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100vh;
+        padding: 40px 20px;
+        background-color: var(--card-background);
+      }
+
+      #hero h1 {
+        font-family: var(--heading-font);
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        color: var(--secondary-color);
+        margin-bottom: 40px;
+      }
+
+      #hero .heart {
+        color: var(--primary-color);
+        font-style: normal;
+      }
+
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1200px;
+      }
+
+      .gallery-container img {
+        width: 320px;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .gallery-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      .section {
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      #game-section {
+        background-color: var(--background-color);
+      }
+
+      #declaration-section {
+        background-color: var(--card-background);
+      }
+
+      .section h2 {
+        font-family: var(--heading-font);
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+      }
+
+      #quiz-container,
+      #results-container {
+        background-color: var(--card-background);
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 30px 40px;
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+      #declaration-section .content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: left;
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #888;
+        background-color: #f1f1f1;
+      }
+
+      #question-counter {
+        font-size: 14px;
+        font-weight: 600;
+        color: #aaa;
+      }
+      #question-text {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+      #answer-input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-family: var(--body-font);
+        font-size: 16px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: border-color 0.2s;
+      }
+      #answer-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+      #feedback-text {
+        height: 24px;
+        margin: 15px 0;
+        font-weight: 600;
+        font-size: 16px;
+      }
+      .feedback-correct {
+        color: var(--correct-color);
+      }
+      .feedback-incorrect {
+        color: var(--incorrect-color);
+      }
+      .button {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-family: var(--body-font);
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+      #check-btn {
+        background-color: var(--primary-color);
+      }
+      #next-btn {
+        background-color: var(--secondary-color);
+      }
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 50px 15px;
+        }
+
+        #hero {
+          padding: 30px 15px;
+        }
+
+        #hero h1 {
+          font-size: clamp(2.2rem, 12vw, 3rem);
+        }
+
+        .gallery-container img {
+          width: 95%;
+          max-width: 350px;
+          height: auto;
+          aspect-ratio: 4 / 3;
+        }
+
+        .section h2 {
+          font-size: 2.2rem;
+        }
+
+        #quiz-container,
+        #results-container {
+          padding: 25px 20px;
+        }
+
+        #declaration-section .content {
+          padding: 0 10px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="hero">
+      <h1>
+        Carlos Wilton <br /><span class="heart">❤️</span> <br />
+        Jeannyne Leite
+      </h1>
+      <div class="gallery-container">
+        <img class="imagem" src="./img/1.jpg" alt="Eu e Tu 1" />
+        <img class="imagem" src="./img/2.png" alt="Eu e Tu 2" />
+        <img class="imagem" src="./img/3.png" alt="Eu e Tu 3" />
+        <img class="imagem" src="./img/4.png" alt="Eu e Tu 4" />
+        <img class="imagem" src="./img/5.png" alt="Eu e Tu 5" />
+        <img class="imagem" src="./img/6.png" alt="Eu e Tu 6" />
+      </div>
+    </section>
+
+    <main>
+      <section id="game-section" class="section">
+        <h2>Vamos jogar um jogo?</h2>
+        <div id="quiz-container">
+          <p id="question-counter"></p>
+          <h2 id="question-text"></h2>
+          <input
+            type="text"
+            id="answer-input"
+            placeholder="Digite sua resposta aqui"
+          />
+          <p id="feedback-text"></p>
+          <button id="check-btn" class="button">Verificar</button>
+          <button id="next-btn" class="button hidden">Próxima Pergunta</button>
+        </div>
+        <div id="results-container" class="hidden">
+          <h1>Excelente! ❤️</h1>
+          <p>Essa minha namorada é sensacional de verdade!</p>
+          <p>Te amo, MEU BEM!</p>
+        </div>
+      </section>
+
+      <section id="declaration-section" class="section">
+        <h2>Para Você</h2>
+        <div class="content">
+          <p>
+            <strong>Meu bem,</strong>
+          </p>
+          <p>
+            Encontrar você foi uma das melhores coisas que poderiam ter
+            acontecido na minha vida. A cada dia que passa, eu tento ser uma
+            pessoa melhor, sonhando com o dia em que poderemos construir um
+            futuro tranquilo juntos.
+          </p>
+          <p>
+            Você é uma mulher linda, que me ensinou tanto — com sua força, seu
+            carinho e sua forma única de ser e ver o mundo. A minha admiração
+            por você só cresce a cada dia.
+          </p>
+          <p>
+            E sim, apesar de todos os choros, crises, agonias, filmes bestas e
+            de ser uma mulher que não gosta de carinho e de ficar agarrada... eu
+            amo você!
+          </p>
+          <p>Com amor <br /><strong>Carlos Wilton</strong></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Developed by: Carlos Vasconcelos, Junho de 2025.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const quizData = [
+          { question: "Lugar da nossa primeira foto?", answer: "MC Donalds" },
+          {
+            question: "Primeiro lugar para onde viajamos juntos?",
+            answer: "Piranhas",
+          },
+          {
+            question: "'Difícil' nome completo do seu nego?",
+            answer: "Carlos Wilton Fonseca Vasconcelos de Araújo",
+          },
+          {
+            question: "De que animal é a minha toca favorita?",
+            answer: "Vaca",
+          },
+          {
+            question: "Qual sabor do seu café favorito?",
+            answer: "Salada de frutas",
+          },
+          {
+            question: "Local da melhor pousada que você escolheu?",
+            answer: "São Bento",
+          },
+          {
+            question:
+              "Quais são as iniciais dos nomes que formam a melhor união do Sistema S?",
+            answer: "CJ",
+          },
+          { question: "Nome da Rainha do WOD?", answer: "Jeannyne" },
+        ];
+
+        let currentQuestionIndex = 0;
+
+        const quizContainer = document.getElementById("quiz-container");
+        const resultsContainer = document.getElementById("results-container");
+        const questionCounter = document.getElementById("question-counter");
+        const questionText = document.getElementById("question-text");
+        const answerInput = document.getElementById("answer-input");
+        const feedbackText = document.getElementById("feedback-text");
+        const checkBtn = document.getElementById("check-btn");
+        const nextBtn = document.getElementById("next-btn");
+
+        function loadQuestion() {
+          feedbackText.textContent = "";
+          feedbackText.className = "";
+          answerInput.value = "";
+          answerInput.disabled = false;
+          checkBtn.classList.remove("hidden");
+          nextBtn.classList.add("hidden");
+          const currentQuestion = quizData[currentQuestionIndex];
+          questionCounter.textContent = `Pergunta ${
+            currentQuestionIndex + 1
+          } de ${quizData.length}`;
+          questionText.textContent = currentQuestion.question;
+          answerInput.focus();
+        }
+
+        function normalizeAnswer(str) {
+          return str
+            .trim()
+            .toLowerCase()
+            .replace(/ç/g, "c")
+            .replace(/ã/g, "a")
+            .replace(/õ/g, "o")
+            .replace(/é/g, "e")
+            .replace(/sao/g, "são");
+        }
+
+        function checkAnswer() {
+          const userAnswer = normalizeAnswer(answerInput.value);
+          const correctAnswer = normalizeAnswer(
+            quizData[currentQuestionIndex].answer
+          );
+
+          if (userAnswer === correctAnswer) {
+            feedbackText.textContent = "Correto! ❤️";
+            feedbackText.className = "feedback-correct";
+            answerInput.disabled = true;
+            checkBtn.classList.add("hidden");
+            nextBtn.classList.remove("hidden");
+          } else {
+            feedbackText.textContent = "Ops, tente de novo!";
+            feedbackText.className = "feedback-incorrect";
+            answerInput.value = "";
+            answerInput.focus();
+          }
+        }
+
+        function showResults() {
+          quizContainer.classList.add("hidden");
+          resultsContainer.classList.remove("hidden");
+        }
+
+        nextBtn.addEventListener("click", () => {
+          currentQuestionIndex++;
+          if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+          } else {
+            showResults();
+          }
+        });
+
+        checkBtn.addEventListener("click", checkAnswer);
+
+        answerInput.addEventListener("keyup", (event) => {
+          if (event.key === "Enter") {
+            if (!checkBtn.classList.contains("hidden")) {
+              checkBtn.click();
+            }
+          }
+        });
+
+        loadQuestion();
+      });
+    </script>
+  </body>
+</html>
