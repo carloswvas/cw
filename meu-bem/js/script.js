@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Quais são as iniciais dos nomes que formam a melhor união do Sistema S?",
       answer: "CJ",
     },
-    { question: "Nome da Rainha do WOD?", answer: "Jeannyne" },
+    { question: "Nome da Rainha do WOD?", answer: "Jeanynne" },
   ];
 
   let currentQuestionIndex = 0;
